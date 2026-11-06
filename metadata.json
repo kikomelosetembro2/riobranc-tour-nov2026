@@ -1,0 +1,6 @@
+{
+  "name": "Rio Branco-TourApk",
+  "description": "Guia turístico, cultural e ecológico completo de Rio Branco - Acre, Brasil. Roteiros, gastronomia acreana, pontos históricos e assistente de turismo local.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
