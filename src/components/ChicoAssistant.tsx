@@ -136,19 +136,19 @@ export const ChicoAssistant: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-140px)] max-w-4xl mx-auto bg-stone-900 border border-stone-800 rounded-3xl overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-[calc(100vh-140px)] max-w-4xl mx-auto bg-white border border-stone-200 rounded-3xl overflow-hidden shadow-sm">
       {/* Header */}
-      <div className="px-5 py-3.5 bg-gradient-to-r from-emerald-950 via-stone-900 to-stone-900 border-b border-stone-800 flex items-center justify-between">
+      <div className="px-5 py-3.5 bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-b border-stone-200 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-600/30 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+          <div className="w-10 h-10 rounded-2xl bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-700">
             <Bot className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-bold text-sm text-stone-100 flex items-center gap-1.5">
+            <h3 className="font-bold text-sm text-stone-900 flex items-center gap-1.5">
               Chico Tour • Guia IA
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
             </h3>
-            <p className="text-[11px] text-stone-400">
+            <p className="text-[11px] text-stone-500">
               Especialista nativo em Rio Branco e tradições do Acre
             </p>
           </div>
@@ -156,7 +156,7 @@ export const ChicoAssistant: React.FC = () => {
 
         <button
           onClick={handleResetChat}
-          className="p-2 rounded-xl bg-stone-800/80 hover:bg-stone-800 text-stone-400 hover:text-stone-200 text-xs flex items-center gap-1 transition-all border border-stone-700"
+          className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 text-xs flex items-center gap-1 transition-all border border-stone-200"
           title="Reiniciar Conversa"
         >
           <RotateCcw className="w-3.5 h-3.5" />
@@ -165,13 +165,13 @@ export const ChicoAssistant: React.FC = () => {
       </div>
 
       {/* Quick Prompts Bar */}
-      <div className="px-4 py-2.5 bg-stone-950/60 border-b border-stone-800 overflow-x-auto scrollbar-none flex gap-2">
+      <div className="px-4 py-2.5 bg-stone-50 border-b border-stone-200 overflow-x-auto scrollbar-none flex gap-2">
         {QUICK_PROMPTS.map((p, idx) => (
           <button
             key={idx}
             onClick={() => handleSendMessage(p.text)}
             disabled={loading}
-            className="px-3 py-1.5 rounded-xl bg-stone-800/80 hover:bg-stone-700 text-stone-300 hover:text-white text-xs font-medium whitespace-nowrap transition-all border border-stone-700/60 flex items-center gap-1.5 shrink-0"
+            className="px-3 py-1.5 rounded-xl bg-white hover:bg-stone-100 text-stone-700 hover:text-stone-900 text-xs font-medium whitespace-nowrap transition-all border border-stone-200 flex items-center gap-1.5 shrink-0 shadow-xs"
           >
             <span>{p.icon}</span>
             <span>{p.text}</span>
@@ -180,7 +180,7 @@ export const ChicoAssistant: React.FC = () => {
       </div>
 
       {/* Messages Stream */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 scrollbar-thin scrollbar-thumb-stone-800">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 scrollbar-thin scrollbar-thumb-stone-200 bg-stone-50/50">
         {messages.map((msg) => {
           const isUser = msg.sender === 'user';
           return (
@@ -192,7 +192,7 @@ export const ChicoAssistant: React.FC = () => {
                 className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold ${
                   isUser
                     ? 'bg-amber-600 text-white'
-                    : 'bg-emerald-700 text-white shadow-md shadow-emerald-950'
+                    : 'bg-emerald-600 text-white shadow-xs'
                 }`}
               >
                 {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -200,17 +200,17 @@ export const ChicoAssistant: React.FC = () => {
 
               <div className={`max-w-[85%] sm:max-w-[75%] space-y-1.5`}>
                 <div
-                  className={`p-4 rounded-2xl text-sm leading-relaxed whitespace-pre-line shadow-md ${
+                  className={`p-4 rounded-2xl text-sm leading-relaxed whitespace-pre-line shadow-xs ${
                     isUser
-                      ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white rounded-tr-none'
-                      : 'bg-stone-800/90 border border-stone-700/80 text-stone-200 rounded-tl-none'
+                      ? 'bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-tr-none'
+                      : 'bg-white border border-stone-200 text-stone-800 rounded-tl-none'
                   }`}
                 >
                   {msg.text}
                 </div>
 
                 <div
-                  className={`flex items-center gap-2 text-[10px] text-stone-500 px-1 ${
+                  className={`flex items-center gap-2 text-[10px] text-stone-400 px-1 ${
                     isUser ? 'justify-end' : 'justify-start'
                   }`}
                 >
@@ -218,11 +218,11 @@ export const ChicoAssistant: React.FC = () => {
                   {!isUser && (
                     <button
                       onClick={() => handleSpeak(msg.id, msg.text)}
-                      className="text-stone-400 hover:text-emerald-400 flex items-center gap-1 transition-colors"
+                      className="text-stone-400 hover:text-emerald-700 flex items-center gap-1 transition-colors"
                       title="Ouvir em áudio"
                     >
                       {speakingId === msg.id ? (
-                        <VolumeX className="w-3.5 h-3.5 text-red-400" />
+                        <VolumeX className="w-3.5 h-3.5 text-red-500" />
                       ) : (
                         <Volume2 className="w-3.5 h-3.5" />
                       )}
@@ -236,13 +236,13 @@ export const ChicoAssistant: React.FC = () => {
 
         {loading && (
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
               <Bot className="w-4 h-4" />
             </div>
-            <div className="p-4 rounded-2xl rounded-tl-none bg-stone-800/80 border border-stone-700 flex items-center gap-2 text-stone-400 text-xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce" />
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.2s]" />
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.4s]" />
+            <div className="p-4 rounded-2xl rounded-tl-none bg-white border border-stone-200 flex items-center gap-2 text-stone-500 text-xs shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce" />
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.2s]" />
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.4s]" />
               <span className="ml-1">Chico Tour está consultando os caminhos de Rio Branco...</span>
             </div>
           </div>
@@ -251,31 +251,31 @@ export const ChicoAssistant: React.FC = () => {
       </div>
 
       {/* Input Box */}
-      <div className="p-3 sm:p-4 bg-stone-950/80 border-t border-stone-800">
+      <div className="p-3 sm:p-4 bg-white border-t border-stone-200">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSendMessage();
           }}
-          className="flex items-center gap-2 bg-stone-900 border border-stone-700/80 rounded-2xl p-1.5 focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-500/20 transition-all"
+          className="flex items-center gap-2 bg-stone-50 border border-stone-300 rounded-2xl p-1.5 focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-500/20 transition-all"
         >
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Pergunte sobre pontos turísticos, comidas, história ou dicas de Rio Branco..."
-            className="flex-1 bg-transparent px-3 py-2 text-sm text-stone-100 placeholder-stone-500 focus:outline-none"
+            className="flex-1 bg-transparent px-3 py-2 text-sm text-stone-900 placeholder-stone-400 focus:outline-none"
             disabled={loading}
           />
           <button
             type="submit"
             disabled={!inputValue.trim() || loading}
-            className="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white flex items-center justify-center shadow-lg transition-all shrink-0"
+            className="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 text-white flex items-center justify-center shadow-xs transition-all shrink-0"
           >
             <Send className="w-4 h-4" />
           </button>
         </form>
-        <p className="text-[10px] text-center text-stone-500 mt-2">
+        <p className="text-[10px] text-center text-stone-400 mt-2">
           Rio Branco-TourApk Inteligência Turística • Informações históricas e culturais de Rio Branco, Acre
         </p>
       </div>

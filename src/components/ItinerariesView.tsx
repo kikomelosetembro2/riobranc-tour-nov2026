@@ -34,15 +34,15 @@ export const ItinerariesView: React.FC<ItinerariesViewProps> = ({ onSelectSpot }
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-12">
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-950/80 via-stone-900 to-amber-950/80 border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+      <div className="bg-gradient-to-r from-emerald-800 via-teal-700 to-amber-700 border border-emerald-900/10 rounded-3xl p-6 sm:p-8 shadow-lg text-white space-y-2">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
           <Calendar className="w-3.5 h-3.5" />
           Roteiros Planejados em Rio Branco
         </div>
         <h2 className="text-3xl font-extrabold text-white">
           Itinerários Prontos para sua Viagem ao Acre
         </h2>
-        <p className="text-sm text-stone-300 max-w-2xl leading-relaxed">
+        <p className="text-sm text-emerald-50 max-w-2xl leading-relaxed">
           Planejados hora a hora por guias locais para otimizar seus deslocamentos entre o Primeiro e o Segundo Distrito de Rio Branco, evitando o calor forte e aproveitando o melhor de cada atração.
         </p>
       </div>
@@ -57,18 +57,18 @@ export const ItinerariesView: React.FC<ItinerariesViewProps> = ({ onSelectSpot }
               onClick={() => setSelectedItinerary(it)}
               className={`p-4 rounded-2xl border text-left transition-all space-y-2 ${
                 isSelected
-                  ? 'bg-emerald-600 text-white border-emerald-500 shadow-xl shadow-emerald-950/50 scale-[1.02]'
-                  : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800 hover:text-white'
+                  ? 'bg-emerald-600 text-white border-emerald-500 shadow-md scale-[1.02]'
+                  : 'bg-white text-stone-800 border-stone-200 hover:bg-stone-50 hover:border-emerald-300'
               }`}
             >
               <div className="flex items-center justify-between text-xs font-semibold">
-                <span className={`px-2.5 py-0.5 rounded-full ${isSelected ? 'bg-emerald-800 text-white' : 'bg-stone-800 text-stone-400'}`}>
+                <span className={`px-2.5 py-0.5 rounded-full ${isSelected ? 'bg-emerald-800 text-white' : 'bg-stone-100 text-stone-600'}`}>
                   {it.duration}
                 </span>
                 <span className="text-[11px] opacity-80">{it.difficulty}</span>
               </div>
               <h3 className="font-bold text-sm leading-tight">{it.title}</h3>
-              <p className={`text-xs line-clamp-2 ${isSelected ? 'text-emerald-100' : 'text-stone-400'}`}>
+              <p className={`text-xs line-clamp-2 ${isSelected ? 'text-emerald-100' : 'text-stone-500'}`}>
                 {it.summary}
               </p>
             </button>
@@ -77,31 +77,31 @@ export const ItinerariesView: React.FC<ItinerariesViewProps> = ({ onSelectSpot }
       </div>
 
       {/* Active Itinerary Details */}
-      <div className="bg-stone-900 border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-800">
+      <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-100">
           <div>
-            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
+            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
               Roteiro Recomendado
             </span>
-            <h3 className="text-2xl font-extrabold text-white mt-1">
+            <h3 className="text-2xl font-extrabold text-stone-900 mt-1">
               {selectedItinerary.title}
             </h3>
-            <p className="text-xs text-stone-400 mt-1">
-              Indicado para: <span className="text-stone-300 font-medium">{selectedItinerary.recommendedFor}</span>
+            <p className="text-xs text-stone-500 mt-1">
+              Indicado para: <span className="text-stone-700 font-semibold">{selectedItinerary.recommendedFor}</span>
             </p>
           </div>
 
           <button
             onClick={handleCopyItinerary}
-            className="px-4 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 border border-stone-700 text-xs font-semibold text-stone-200 flex items-center gap-2 self-start transition-all"
+            className="px-4 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 border border-stone-200 text-xs font-semibold text-stone-700 flex items-center gap-2 self-start transition-all"
           >
-            {copied ? <CheckCircle className="w-4 h-4 text-emerald-400" /> : <Download className="w-4 h-4" />}
+            {copied ? <CheckCircle className="w-4 h-4 text-emerald-600" /> : <Download className="w-4 h-4" />}
             {copied ? 'Copiado para o Celular!' : 'Salvar / Copiar Roteiro'}
           </button>
         </div>
 
         {/* Timeline Steps */}
-        <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-stone-800">
+        <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-stone-200">
           {selectedItinerary.steps.map((step, idx) => {
             const linkedSpot = step.spotId
               ? RIO_BRANCO_SPOTS.find((s) => s.id === step.spotId)
@@ -110,17 +110,17 @@ export const ItinerariesView: React.FC<ItinerariesViewProps> = ({ onSelectSpot }
             return (
               <div key={idx} className="relative group">
                 {/* Timeline Pin Dot */}
-                <div className="absolute -left-6 sm:-left-8 top-1 w-5 h-5 rounded-full bg-emerald-600 border-4 border-stone-900 shadow-md group-hover:scale-110 transition-transform" />
+                <div className="absolute -left-6 sm:-left-8 top-1 w-5 h-5 rounded-full bg-emerald-600 border-4 border-white shadow-xs group-hover:scale-110 transition-transform" />
 
-                <div className="p-4 sm:p-5 rounded-2xl bg-stone-800/60 border border-stone-700/70 hover:border-emerald-500/50 transition-all space-y-2.5">
+                <div className="p-4 sm:p-5 rounded-2xl bg-stone-50 border border-stone-200 hover:border-emerald-300 transition-all space-y-2.5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="px-2.5 py-0.5 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-bold font-mono">
+                    <span className="px-2.5 py-0.5 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold font-mono">
                       {step.time}
                     </span>
                     {linkedSpot && (
                       <button
                         onClick={() => onSelectSpot(linkedSpot)}
-                        className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors"
+                        className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 transition-colors"
                       >
                         Ver Ponto no Mapa & Áudio
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -128,17 +128,17 @@ export const ItinerariesView: React.FC<ItinerariesViewProps> = ({ onSelectSpot }
                     )}
                   </div>
 
-                  <h4 className="font-extrabold text-base text-stone-100">
+                  <h4 className="font-extrabold text-base text-stone-900">
                     {step.title}
                   </h4>
 
-                  <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                     {step.description}
                   </p>
 
-                  <div className="p-3 rounded-xl bg-amber-950/20 border border-amber-900/30 text-amber-200 text-xs flex items-start gap-2">
-                    <Lightbulb className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                    <p><span className="font-bold text-amber-300">Dica do Guia:</span> {step.tip}</p>
+                  <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2">
+                    <Lightbulb className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <p><span className="font-bold text-amber-900">Dica do Guia:</span> {step.tip}</p>
                   </div>
                 </div>
               </div>

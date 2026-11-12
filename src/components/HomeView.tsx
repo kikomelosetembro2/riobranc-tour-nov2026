@@ -13,8 +13,10 @@ import {
   Compass,
   Trees,
   Landmark,
-  ExternalLink
+  ExternalLink,
+  GraduationCap
 } from 'lucide-react';
+import { DynamicTravelTips } from './DynamicTravelTips';
 
 interface HomeViewProps {
   onSelectSpot: (spot: TouristSpot) => void;
@@ -55,105 +57,119 @@ export const HomeView: React.FC<HomeViewProps> = ({
   return (
     <div className="space-y-8 pb-16">
       {/* Hero Welcome Header */}
-      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-950 via-stone-900 to-amber-950/70 border border-stone-800 p-6 sm:p-10 shadow-2xl">
+      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-800 via-emerald-700 to-amber-700 border border-emerald-900/10 p-6 sm:p-10 shadow-lg text-white">
         <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-extrabold uppercase tracking-widest">
-            <span className="w-2 h-2 rounded-full bg-red-500 inline-block shadow-sm" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/30 text-white text-xs font-extrabold uppercase tracking-widest backdrop-blur-xs">
+            <span className="w-2 h-2 rounded-full bg-red-500 inline-block shadow-xs" />
             Acre • Amazônia Ocidental
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none">
+          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none drop-shadow-xs">
             Descubra Rio Branco
           </h1>
 
-          <p className="text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-emerald-50 leading-relaxed font-normal max-w-2xl">
             O guia definitivo da capital acreana: sob a sombra da Gameleira centenária, os aromas da Baixaria no Mercado do Bosque, a luta heróica dos seringueiros e a brisa suave do Rio Acre.
           </p>
 
           {/* Search Box */}
           <div className="relative max-w-xl pt-2">
-            <Search className="w-5 h-5 absolute left-4 top-5 text-stone-400" />
+            <Search className="w-5 h-5 absolute left-4 top-5 text-stone-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Buscar pontos turísticos, comidas, bairros..."
-              className="w-full bg-stone-900/90 backdrop-blur-md border border-stone-700/80 rounded-2xl pl-12 pr-4 py-3.5 text-sm text-stone-100 placeholder-stone-500 shadow-xl focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all"
+              className="w-full bg-white/95 text-stone-900 border border-white/60 rounded-2xl pl-12 pr-4 py-3.5 text-sm placeholder-stone-400 shadow-md focus:outline-none focus:ring-2 focus:ring-amber-400 focus:bg-white transition-all"
             />
           </div>
         </div>
 
         {/* Decorative Watermark Star of Acre */}
-        <div className="absolute right-4 -bottom-10 opacity-10 pointer-events-none select-none">
-          <svg width="280" height="280" viewBox="0 0 100 100" fill="#ef4444">
+        <div className="absolute right-4 -bottom-10 opacity-15 pointer-events-none select-none">
+          <svg width="280" height="280" viewBox="0 0 100 100" fill="#ffffff">
             <polygon points="50,5 64,38 98,38 70,59 81,92 50,72 19,92 30,59 2,38 36,38" />
           </svg>
         </div>
       </div>
 
       {/* Quick Access Action Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         <button
           onClick={() => onNavigateToTab('mapa')}
-          className="p-4 rounded-2xl bg-stone-900 border border-stone-800 hover:border-emerald-500/60 transition-all text-left group shadow-lg"
+          className="p-4 rounded-2xl bg-white border border-stone-200 hover:border-emerald-500 hover:shadow-md transition-all text-left group shadow-xs"
         >
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
             <Compass className="w-5 h-5" />
           </div>
-          <h4 className="font-bold text-sm text-stone-100">Mapa do Acre</h4>
-          <p className="text-xs text-stone-400 mt-0.5">Rotas & GPS ao vivo</p>
+          <h4 className="font-bold text-sm text-stone-900">Mapa do Acre</h4>
+          <p className="text-xs text-stone-500 mt-0.5">Rotas & GPS ao vivo</p>
         </button>
 
         <button
           onClick={() => onNavigateToTab('gastronomia')}
-          className="p-4 rounded-2xl bg-stone-900 border border-stone-800 hover:border-amber-500/60 transition-all text-left group shadow-lg"
+          className="p-4 rounded-2xl bg-white border border-stone-200 hover:border-amber-500 hover:shadow-md transition-all text-left group shadow-xs"
         >
-          <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
             <Utensils className="w-5 h-5" />
           </div>
-          <h4 className="font-bold text-sm text-stone-100">Baixaria & Sabores</h4>
-          <p className="text-xs text-stone-400 mt-0.5">Tacacá, peixes e doces</p>
+          <h4 className="font-bold text-sm text-stone-900">Baixaria & Sabores</h4>
+          <p className="text-xs text-stone-500 mt-0.5">Tacacá, peixes e doces</p>
         </button>
 
         <button
           onClick={() => onNavigateToTab('roteiros')}
-          className="p-4 rounded-2xl bg-stone-900 border border-stone-800 hover:border-emerald-500/60 transition-all text-left group shadow-lg"
+          className="p-4 rounded-2xl bg-white border border-stone-200 hover:border-emerald-500 hover:shadow-md transition-all text-left group shadow-xs"
         >
-          <div className="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-300 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
             <Clock className="w-5 h-5" />
           </div>
-          <h4 className="font-bold text-sm text-stone-100">Roteiros Prontos</h4>
-          <p className="text-xs text-stone-400 mt-0.5">1 dia, fim de semana</p>
+          <h4 className="font-bold text-sm text-stone-900">Roteiros Prontos</h4>
+          <p className="text-xs text-stone-500 mt-0.5">1 dia, fim de semana</p>
+        </button>
+
+        <button
+          onClick={() => onNavigateToTab('escolas')}
+          className="p-4 rounded-2xl bg-white border border-stone-200 hover:border-blue-500 hover:shadow-md transition-all text-left group shadow-xs"
+        >
+          <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+            <GraduationCap className="w-5 h-5" />
+          </div>
+          <h4 className="font-bold text-sm text-stone-900">Escolas</h4>
+          <p className="text-xs text-stone-500 mt-0.5">Municipais & Estaduais</p>
         </button>
 
         <button
           onClick={() => onNavigateToTab('assistente')}
-          className="p-4 rounded-2xl bg-stone-900 border border-stone-800 hover:border-emerald-500/60 transition-all text-left group shadow-lg"
+          className="p-4 rounded-2xl bg-white border border-stone-200 hover:border-emerald-500 hover:shadow-md transition-all text-left group shadow-xs col-span-2 sm:col-span-1"
         >
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
             <Sparkles className="w-5 h-5" />
           </div>
-          <h4 className="font-bold text-sm text-stone-100">Chico Tour IA</h4>
-          <p className="text-xs text-stone-400 mt-0.5">Dicas e roteiro 24h</p>
+          <h4 className="font-bold text-sm text-stone-900">Chico Tour IA</h4>
+          <p className="text-xs text-stone-500 mt-0.5">Dicas e roteiro 24h</p>
         </button>
       </div>
 
+      {/* Dynamic Travel Tips Component */}
+      <DynamicTravelTips onOpenSpot={onOpenMapToSpot} currentTemp={29} />
+
       {/* Featured Banner: A Baixaria do Bosque */}
-      <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-amber-950/60 to-stone-900 border border-amber-800/40 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div className="p-5 sm:p-6 rounded-3xl bg-amber-50 border border-amber-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-5">
         <div className="flex items-center gap-4">
           <img
             src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80"
             alt="Baixaria de Rio Branco"
-            className="w-20 h-20 rounded-2xl object-cover shrink-0 border border-amber-600/50"
+            className="w-20 h-20 rounded-2xl object-cover shrink-0 border border-amber-300 shadow-xs"
           />
           <div>
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-800">
               Patrimônio Cultural Imaterial
             </span>
-            <h3 className="font-extrabold text-lg text-white">
+            <h3 className="font-extrabold text-lg text-stone-900">
               Já provou a Baixaria no Mercado do Bosque?
             </h3>
-            <p className="text-xs text-stone-300 mt-0.5">
+            <p className="text-xs text-stone-600 mt-0.5">
               Cuscuz de milho macio, carne moída temperada, cheiro-verde fresco e dois ovos caipiras fritos com gema mole.
             </p>
           </div>
@@ -161,7 +177,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
         <button
           onClick={() => onNavigateToTab('gastronomia')}
-          className="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-lg transition-all flex items-center gap-2 whitespace-nowrap self-stretch sm:self-auto justify-center"
+          className="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-xs transition-all flex items-center gap-2 whitespace-nowrap self-stretch sm:self-auto justify-center"
         >
           Conhecer a Gastronomia
           <ArrowRight className="w-3.5 h-3.5" />
@@ -183,8 +199,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
             onClick={() => setSelectedCategory(cat.id)}
             className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
               selectedCategory === cat.id
-                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950 scale-[1.02]'
-                : 'bg-stone-900 text-stone-400 hover:bg-stone-800 hover:text-white border border-stone-800'
+                ? 'bg-emerald-600 text-white shadow-xs scale-[1.02]'
+                : 'bg-white text-stone-700 hover:bg-stone-100 hover:text-stone-900 border border-stone-200'
             }`}
           >
             {cat.label}
@@ -201,19 +217,19 @@ export const HomeView: React.FC<HomeViewProps> = ({
           return (
             <div
               key={spot.id}
-              className="bg-stone-900 border border-stone-800 rounded-3xl overflow-hidden shadow-xl hover:border-stone-700 transition-all flex flex-col justify-between group"
+              className="bg-white border border-stone-200 rounded-3xl overflow-hidden shadow-xs hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between group"
             >
               {/* Image & Badges */}
-              <div className="relative h-48 overflow-hidden bg-stone-950">
+              <div className="relative h-48 overflow-hidden bg-stone-100">
                 <img
                   src={spot.imageUrl}
                   alt={spot.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-black/30" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-black/20" />
 
                 <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-emerald-400 border border-emerald-500/30">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-xs text-white border border-white/20">
                     {spot.category}
                   </span>
                 </div>
@@ -221,10 +237,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="absolute top-3 right-3 flex items-center gap-1.5">
                   <button
                     onClick={() => onToggleFavorite(spot.id)}
-                    className={`p-2 rounded-full backdrop-blur-md transition-all ${
+                    className={`p-2 rounded-full backdrop-blur-xs transition-all ${
                       isFav
-                        ? 'bg-amber-500 text-white shadow-lg'
-                        : 'bg-stone-900/80 text-stone-300 hover:text-white'
+                        ? 'bg-amber-500 text-white shadow-xs'
+                        : 'bg-white/80 text-stone-700 hover:bg-white'
                     }`}
                     title="Favoritar"
                   >
@@ -233,10 +249,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <button
                     onClick={() => onToggleVisited(spot.id)}
-                    className={`p-2 rounded-full backdrop-blur-md transition-all ${
+                    className={`p-2 rounded-full backdrop-blur-xs transition-all ${
                       isVis
-                        ? 'bg-emerald-500 text-white shadow-lg'
-                        : 'bg-stone-900/80 text-stone-300 hover:text-white'
+                        ? 'bg-emerald-600 text-white shadow-xs'
+                        : 'bg-white/80 text-stone-700 hover:bg-white'
                     }`}
                     title="Já visitei"
                   >
@@ -244,12 +260,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   </button>
                 </div>
 
-                <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[11px] text-stone-300">
-                  <span className="flex items-center gap-1 drop-shadow">
-                    <MapPin className="w-3 h-3 text-emerald-400" />
+                <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[11px] text-white">
+                  <span className="flex items-center gap-1 drop-shadow-xs font-medium">
+                    <MapPin className="w-3 h-3 text-emerald-300" />
                     {spot.neighborhood}
                   </span>
-                  <span className="font-semibold text-emerald-400 drop-shadow">
+                  <span className="font-bold text-amber-300 drop-shadow-xs">
                     {spot.admission}
                   </span>
                 </div>
@@ -258,28 +274,28 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {/* Content */}
               <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-extrabold text-base text-stone-100 group-hover:text-emerald-400 transition-colors">
+                  <h3 className="font-extrabold text-base text-stone-900 group-hover:text-emerald-700 transition-colors">
                     {spot.name}
                   </h3>
-                  <p className="text-xs text-stone-400 line-clamp-2 mt-1 leading-relaxed">
+                  <p className="text-xs text-stone-600 line-clamp-2 mt-1 leading-relaxed">
                     {spot.shortDescription}
                   </p>
                 </div>
 
                 {/* Card Action Buttons */}
-                <div className="pt-2 border-t border-stone-800 flex items-center justify-between gap-2">
+                <div className="pt-2 border-t border-stone-100 flex items-center justify-between gap-2">
                   <button
                     onClick={() => onOpenMapToSpot(spot.id)}
-                    className="p-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white text-xs flex items-center gap-1.5 transition-all"
+                    className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 hover:text-stone-900 text-xs flex items-center gap-1.5 transition-all"
                     title="Ver no Mapa"
                   >
-                    <Compass className="w-3.5 h-3.5 text-emerald-400" />
+                    <Compass className="w-3.5 h-3.5 text-emerald-600" />
                     <span className="text-[11px] font-semibold">Mapa</span>
                   </button>
 
                   <button
                     onClick={() => onSelectSpot(spot)}
-                    className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5"
+                    className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5"
                   >
                     <Volume2 className="w-3.5 h-3.5" />
                     Detalhes & Áudio

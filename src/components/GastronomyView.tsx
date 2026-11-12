@@ -42,16 +42,16 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-12">
       {/* Hero Banner */}
-      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-amber-950/80 via-stone-900 to-emerald-950/80 border border-stone-800 p-6 sm:p-10 shadow-2xl">
+      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-amber-800 via-amber-700 to-emerald-800 border border-amber-900/10 p-6 sm:p-10 shadow-lg text-white">
         <div className="relative z-10 max-w-2xl space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/30 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
             <Utensils className="w-3.5 h-3.5" />
             Gastronomia Acreana em Rio Branco
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Sabores da Floresta e Herança dos Seringais
           </h2>
-          <p className="text-sm sm:text-base text-stone-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-amber-50 leading-relaxed">
             A culinária de Rio Branco é única no Brasil. Fruto da confluência entre tradições indígenas milenares, a migração dos seringueiros nordestinos e a influência dos imigrantes árabes e libaneses que vieram na era da borracha.
           </p>
         </div>
@@ -67,11 +67,11 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
               onClick={() => setSelectedDish(dish)}
               className={`p-3.5 rounded-2xl border text-left transition-all flex flex-col justify-between gap-3 ${
                 isSelected
-                  ? 'bg-amber-600 text-white border-amber-500 shadow-xl shadow-amber-950/50 scale-[1.02]'
-                  : 'bg-stone-900/90 text-stone-300 border-stone-800 hover:bg-stone-800 hover:text-white'
+                  ? 'bg-amber-600 text-white border-amber-500 shadow-md scale-[1.02]'
+                  : 'bg-white text-stone-800 border-stone-200 hover:border-amber-300 hover:bg-stone-50'
               }`}
             >
-              <div className="w-full h-20 rounded-xl overflow-hidden bg-stone-950 shrink-0">
+              <div className="w-full h-20 rounded-xl overflow-hidden bg-stone-100 shrink-0">
                 <img
                   src={dish.imageUrl}
                   alt={dish.name}
@@ -80,7 +80,7 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
               </div>
               <div>
                 <p className="font-bold text-xs sm:text-sm leading-snug">{dish.name}</p>
-                <p className={`text-[11px] line-clamp-1 mt-0.5 ${isSelected ? 'text-amber-100' : 'text-stone-400'}`}>
+                <p className={`text-[11px] line-clamp-1 mt-0.5 ${isSelected ? 'text-amber-100' : 'text-stone-500'}`}>
                   {dish.subtitle}
                 </p>
               </div>
@@ -90,29 +90,29 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
       </div>
 
       {/* Selected Dish Deep Dive Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-stone-900 border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs">
         <div className="lg:col-span-5 space-y-4">
-          <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-stone-950 border border-stone-800 shadow-inner">
+          <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-stone-100 border border-stone-200">
             <img
               src={selectedDish.imageUrl}
               alt={selectedDish.name}
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-stone-950/80 backdrop-blur-md border border-stone-700 text-xs font-semibold text-amber-400 flex items-center gap-1.5">
+            <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-xs border border-stone-200 text-xs font-bold text-amber-700 flex items-center gap-1.5 shadow-xs">
               <Flame className="w-3.5 h-3.5" />
               Nível: {selectedDish.spiceLevel}
             </div>
           </div>
 
-          <div className="bg-stone-800/50 rounded-2xl p-4 border border-stone-800 space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">
+          <div className="bg-stone-50 rounded-2xl p-4 border border-stone-200 space-y-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-800">
               Ingredientes Típicos
             </h4>
             <div className="flex flex-wrap gap-1.5">
               {selectedDish.ingredients.map((ing, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-1 rounded-lg bg-stone-800 text-xs text-stone-300 border border-stone-700/60"
+                  className="px-2.5 py-1 rounded-lg bg-white text-xs text-stone-700 border border-stone-200"
                 >
                   • {ing}
                 </span>
@@ -124,29 +124,29 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
         <div className="lg:col-span-7 space-y-5 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-widest">
+              <span className="text-xs font-bold text-amber-700 uppercase tracking-widest">
                 Prato Típico de Rio Branco
               </span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-100">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900">
               {selectedDish.name}
             </h3>
-            <p className="text-sm font-medium text-amber-400/90 mt-0.5">
+            <p className="text-sm font-semibold text-amber-700 mt-0.5">
               {selectedDish.subtitle}
             </p>
 
-            <div className="mt-4 space-y-3 text-stone-300 text-sm leading-relaxed">
+            <div className="mt-4 space-y-3 text-stone-700 text-sm leading-relaxed">
               <p>{selectedDish.description}</p>
-              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-900/40 text-stone-200">
-                <span className="font-bold text-amber-300 block mb-1">A História do Prato:</span>
-                <p className="text-xs sm:text-sm text-stone-300">{selectedDish.story}</p>
+              <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-stone-800">
+                <span className="font-bold text-amber-900 block mb-1">A História do Prato:</span>
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{selectedDish.story}</p>
               </div>
             </div>
           </div>
 
           {/* Where to Eat in Rio Branco */}
-          <div className="space-y-3 pt-4 border-t border-stone-800">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+          <div className="space-y-3 pt-4 border-t border-stone-100">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
               <MapPin className="w-4 h-4" />
               Onde Provar em Rio Branco
             </h4>
@@ -155,11 +155,11 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
               {selectedDish.whereToEat.map((loc, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-2xl bg-stone-800/70 border border-stone-700/80 space-y-1"
+                  className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1"
                 >
-                  <p className="font-bold text-sm text-stone-100">{loc.place}</p>
-                  <p className="text-xs text-stone-400">{loc.neighborhood} • {loc.address}</p>
-                  <p className="text-[11px] text-amber-300/90 flex items-center gap-1 pt-1">
+                  <p className="font-bold text-sm text-stone-900">{loc.place}</p>
+                  <p className="text-xs text-stone-500">{loc.neighborhood} • {loc.address}</p>
+                  <p className="text-[11px] text-amber-700 font-medium flex items-center gap-1 pt-1">
                     <Clock className="w-3 h-3" />
                     {loc.bestTime}
                   </p>
@@ -171,17 +171,17 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
       </div>
 
       {/* Interactive Simulator: Monte sua Baixaria Acreana */}
-      <div className="bg-gradient-to-br from-stone-900 via-stone-900 to-emerald-950/40 border border-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+      <div className="bg-stone-50 border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-200">
               <ChefHat className="w-3.5 h-3.5" />
               Interativo • Experiência Cultural
             </div>
-            <h3 className="text-2xl font-extrabold text-white">
+            <h3 className="text-2xl font-extrabold text-stone-900">
               Monte sua Autêntica Baixaria de Rio Branco
             </h3>
-            <p className="text-xs sm:text-sm text-stone-400 mt-1">
+            <p className="text-xs sm:text-sm text-stone-600 mt-1">
               Personalize o prato oficial do Mercado do Bosque do seu jeito e ganhe o seu certificado de viajante gastronômico!
             </p>
           </div>
@@ -189,7 +189,7 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
           {baixariaFeita && (
             <button
               onClick={() => setBaixariaFeita(false)}
-              className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-semibold flex items-center gap-1.5 self-start transition-all"
+              className="px-4 py-2 rounded-xl bg-white border border-stone-200 hover:bg-stone-100 text-stone-700 text-xs font-semibold flex items-center gap-1.5 self-start transition-all shadow-xs"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               Montar Outra
@@ -201,7 +201,7 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
           <div className="space-y-5">
             {/* Base */}
             <div>
-              <label className="text-xs font-bold text-stone-300 uppercase tracking-wider block mb-2">
+              <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block mb-2">
                 1. Escolha a Base de Cuscuz
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -214,8 +214,8 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
                     onClick={() => setBaixariaBase(opt)}
                     className={`p-3 rounded-xl border text-xs text-left font-medium transition-all ${
                       baixariaBase === opt
-                        ? 'bg-amber-600/30 border-amber-500 text-amber-200'
-                        : 'bg-stone-800/60 border-stone-800 text-stone-400 hover:bg-stone-800'
+                        ? 'bg-amber-100 border-amber-400 text-amber-900 font-bold'
+                        : 'bg-white border-stone-200 text-stone-700 hover:bg-stone-100'
                     }`}
                   >
                     {opt}
@@ -226,7 +226,7 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
 
             {/* Carne */}
             <div>
-              <label className="text-xs font-bold text-stone-300 uppercase tracking-wider block mb-2">
+              <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block mb-2">
                 2. A Carne do Recheio
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -239,8 +239,8 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
                     onClick={() => setBaixariaCarne(opt)}
                     className={`p-3 rounded-xl border text-xs text-left font-medium transition-all ${
                       baixariaCarne === opt
-                        ? 'bg-amber-600/30 border-amber-500 text-amber-200'
-                        : 'bg-stone-800/60 border-stone-800 text-stone-400 hover:bg-stone-800'
+                        ? 'bg-amber-100 border-amber-400 text-amber-900 font-bold'
+                        : 'bg-white border-stone-200 text-stone-700 hover:bg-stone-100'
                     }`}
                   >
                     {opt}
@@ -251,7 +251,7 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
 
             {/* Ovos */}
             <div>
-              <label className="text-xs font-bold text-stone-300 uppercase tracking-wider block mb-2">
+              <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block mb-2">
                 3. O Ponto dos Ovos Caipiras
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -264,8 +264,8 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
                     onClick={() => setBaixariaOvos(opt)}
                     className={`p-3 rounded-xl border text-xs text-left font-medium transition-all ${
                       baixariaOvos === opt
-                        ? 'bg-amber-600/30 border-amber-500 text-amber-200'
-                        : 'bg-stone-800/60 border-stone-800 text-stone-400 hover:bg-stone-800'
+                        ? 'bg-amber-100 border-amber-400 text-amber-900 font-bold'
+                        : 'bg-white border-stone-200 text-stone-700 hover:bg-stone-100'
                     }`}
                   >
                     {opt}
@@ -276,22 +276,22 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
 
             {/* Toppings Checkboxes */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-stone-300">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-stone-700">
                 <input
                   type="checkbox"
                   checked={baixariaCheiroVerde}
                   onChange={(e) => setBaixariaCheiroVerde(e.target.checked)}
-                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 bg-stone-800 border-stone-700"
+                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 bg-white border-stone-300"
                 />
                 Cheiro-Verde Abundante (Coentro + Cebolinha)
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-stone-300">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-stone-700">
                 <input
                   type="checkbox"
                   checked={baixariaPimenta}
                   onChange={(e) => setBaixariaPimenta(e.target.checked)}
-                  className="rounded text-red-600 focus:ring-red-500 w-4 h-4 bg-stone-800 border-stone-700"
+                  className="rounded text-red-600 focus:ring-red-500 w-4 h-4 bg-white border-stone-300"
                 />
                 Gotas de Molho de Pimenta Murupi Acreana
               </label>
@@ -299,29 +299,29 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
 
             <button
               onClick={handlePrepararBaixaria}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-emerald-600 hover:from-amber-500 hover:to-emerald-500 text-white font-extrabold text-sm shadow-xl transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-emerald-600 hover:from-amber-700 hover:to-emerald-700 text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center gap-2"
             >
               <Sparkles className="w-4 h-4" />
               Servir Minha Baixaria no Mercado do Bosque!
             </button>
           </div>
         ) : (
-          <div className="p-6 rounded-2xl bg-stone-800/80 border border-emerald-500/50 space-y-4 animate-in zoom-in-95">
+          <div className="p-6 rounded-2xl bg-white border border-emerald-300 space-y-4 shadow-sm animate-in zoom-in-95">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-extrabold text-lg text-white">
+                <h4 className="font-extrabold text-lg text-stone-900">
                   Prato Pronto! Baixaria à Moda Rio Branco
                 </h4>
-                <p className="text-xs text-emerald-400 font-medium">
+                <p className="text-xs text-emerald-700 font-medium">
                   Certificado emitido: Você já sabe pedir como um verdadeiro acreano!
                 </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-stone-900 border border-stone-700 space-y-1.5 text-xs text-stone-300">
+            <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-1.5 text-xs text-stone-700">
               <p>🌾 <b>Base:</b> {baixariaBase}</p>
               <p>🥩 <b>Carne:</b> {baixariaCarne}</p>
               <p>🍳 <b>Ovos:</b> {baixariaOvos}</p>
@@ -329,7 +329,7 @@ export const GastronomyView: React.FC<GastronomyViewProps> = () => {
               <p>🌶️ <b>Pimenta murupi:</b> {baixariaPimenta ? 'Sim, pimenta da terra' : 'Sem pimenta'}</p>
             </div>
 
-            <p className="text-xs text-stone-400 italic">
+            <p className="text-xs text-stone-500 italic">
               "Agora é só misturar a gema mole no cuscuz com carne e pedir um cafezinho com leite ou suco de cupuaçu!"
             </p>
           </div>
